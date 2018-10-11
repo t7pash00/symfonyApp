@@ -68,13 +68,13 @@ class QuestionsController extends AbstractController
             ->add('save', SubmitType::class, array('label' => 'Create Question'))
             ->getForm();
 
-            // $form->handleRequest($request);
+            $form->handleRequest($request);
 
-            // if ($form->isSubmitted() ) {
-            //     // perform some action...
+            if ($form->isSubmitted() ) {
+                // perform some action...
         
-            //     return $this->redirectToRoute('questions');
-            // }
+                return $this->redirectToRoute('questions');
+            }
 
         return $this->render('questions/new.html.twig', array(
             'form' => $form->createView(),
