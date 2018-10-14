@@ -19,11 +19,11 @@ class AssignexamtostudentsRepository extends ServiceEntityRepository
         parent::__construct($registry, Assignexamtostudents::class);
     }
 
-//    /**
-//     * @return Assignexamtostudents[] Returns an array of Assignexamtostudents objects
-//     */
-    /*
-    public function findByExampleField($value)
+   /**
+    * @return Assignexamtostudents[] Returns an array of Assignexamtostudents objects
+    */
+
+    public function GetAllassignexamtostudents($value)
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')
