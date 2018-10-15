@@ -10,3 +10,10 @@ AssignExamToStudentController:
   path: /exam
   controller: App\Controller\AssignExamToStudentController::index
 
+exams:
+path: /exam
+controller: App\Controller\ExamsController::index
+
+AssignQuestionToExamController:
+path: /questions
+controller: App\Controller\AssignQuestionToExam::index
