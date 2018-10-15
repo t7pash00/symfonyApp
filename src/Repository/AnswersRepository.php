@@ -18,22 +18,23 @@ class AnswersRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Answers::class);
     }
-
-//    /**
-//     * @return Answers[] Returns an array of Answers objects
-//     */
-    /*
-    public function findByExampleField($value)
+ 
+   @return Answers[] Returns an array of Answers objects
+    
+    public function GetAllanswers($userid)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+        SELECT 
+            * from assignexamtostudents a where a.answersid= :uid';
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['uid' => $userid]);
+    
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
     }
+   
+    
     */
 
     /*
