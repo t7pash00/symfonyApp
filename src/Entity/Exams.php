@@ -37,9 +37,9 @@ class Exams
     private $canchange;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255)
      */
-    private $Description;
+    private $description;
 
     public function getId(): ?int
     {
@@ -94,14 +94,14 @@ class Exams
         return $this;
     }
 
-    public function getDescription(): ?bool
+    public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
-    public function setDescription(bool $Description): self
+    public function setDescription(string $description): self
     {
-        $this->Description = $Description;
+        $this->description = $description;
 
         return $this;
     }
