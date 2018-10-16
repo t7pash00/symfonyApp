@@ -30,6 +30,15 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
     }
+    public function getUser($credentials, UserProviderInterface $userProvider)
+    {
+        $token = new CsrfToken('authenticate', $credentials['csrf_token']);
+        if (!$this->csrfTokenManager->isTokenValid($token)) {
+            throw new InvalidCsrfTokenException();
+        }
+
+        return $this->userRepository->findOneBy(['email' => $credentials['email']]);
+    }
 
     public function supports(Request $request)
     {
@@ -37,6 +46,27 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         return $request->attributes->get('_route') === 'app_login'
             && $request->isMethod('POST');
     }
+    public function checkCredentials($credentials, UserInterface $user)
+    {
+        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+    }
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    {
+      // $user =$this->userRepository->findOneBy(['email' => $credentials['email']])->getUser();
+      // $userId = $this->getUser()->getId();
+       // $user = $this->token_storage->getToken()->getUser();
+       // $request->getSession()->get('name', 'default_value')
+       //  $credentials=$this->getCredentials($request);
+       //  $user = $this->userRepository->findOneBy(['email' => $credentials['email']]);
+        return new RedirectResponse($this->router->generate('exams_show'));
+    }
+
+    protected function getLoginUrl()
+    {
+        return $this->router->generate('app_login');
+    }
+
+
 
     public function getCredentials(Request $request)
     {
@@ -55,3 +85,4 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         return $credentials;
     }
+
