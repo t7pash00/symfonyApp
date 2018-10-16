@@ -40,24 +40,34 @@
                 width: 85%;
             }
             .Top_ {
-                column-count: 2;
-                column-gap: 20px;
-                height: 50px;
-                display: inline-block;
+                 height: 40% !important;
+
                 vertical-align: top;
                 background:lightgray;
-               
+                width: 85%;
+
                
             }
             .Bottom_ {
                 float: Bottom;
-                height: 85%;
+                height: 60%;
+                text-align: center;
+
             }
+              .center {
+              text-align: center;
+              margin: auto;
+              width: 60%;
+              padding: 10px;
+              }
         </style>
     </head>
     <body>
         <div id="sidebar" class="left_">
             {% block sidebar %}
+
+            
+            </div>
 
                 <a href="<?php echo site_url('Students_ctl/show_students'); ?>">
                     <button style="width:90%; margin-top: 10px;">Questions And Answer</button>
