@@ -19,7 +19,7 @@ class AnswersRepository extends ServiceEntityRepository
         parent::__construct($registry, Answers::class);
     }
  
-   @return Answers[] Returns an array of Answers objects
+//    @return Answers[] Returns an array of Answers objects
     
     public function GetAllanswers($userid)
     {
@@ -35,7 +35,7 @@ class AnswersRepository extends ServiceEntityRepository
     }
    
     
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Answers
