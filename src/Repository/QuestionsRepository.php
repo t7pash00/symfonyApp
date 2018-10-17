@@ -19,54 +19,46 @@ class QuestionsRepository extends ServiceEntityRepository
         parent::__construct($registry, Questions::class);
     }
     /**
-     * @return Questions[] Returns an array of Questions objects
-     */
-    public function GetAllQuestions($userid, $examid): array
-    {
-        $conn = $this->getEntityManager()->getConnection();
+        * @return Questions[] Returns an array of Questions objects
+        */
+        public function GetAllQuestions($userid):array{
+            $conn = $this->getEntityManager()->getConnection();
 
-        $sql = '
-            SELECT
-            q.id,
-            q.qdescription,
-            q.qcategory,
-            CASE
-            WHEN q.qcategory =1  THEN "Programming"
-            WHEN q.qcategory =2  THEN "Math"
-            WHEN q.qcategory =3  THEN "Finnish Languge"
-            ELSE "No category is selected"
-            END as qcategoryDsc,
-            q.qdifficultylevel,
-            CASE
-            WHEN q.qdifficultylevel =0  THEN "Easy"
-            WHEN q.qdifficultylevel =1  THEN "Medium"
-            WHEN q.qdifficultylevel =2  THEN "Hard"
-            ELSE "No qdifficultylevel is selected"
-            END as qdifficultylevelDsc,
-            q.canedit,
-            q.userid
-            FROM questions q ';
+            $sql = '
+                SELECT
+                id,
+                qdescription,
+                qcategory,
+                CASE
+                WHEN qcategory =1  THEN "Programming"
+                WHEN qcategory =2  THEN "Math"
+                WHEN qcategory =3  THEN "Finnish Languge"
+                ELSE "No category is selected"
+                END as qcategoryDsc,
+                qdifficultylevel,
+                CASE
+                WHEN qdifficultylevel =0  THEN "Easy"
+                WHEN qdifficultylevel =1  THEN "Medium"
+                WHEN qdifficultylevel =2  THEN "Hard"
+                ELSE "No qdifficultylevel is selected"
+                END as qdifficultylevelDsc,
 
-        if ($examid > 0) {
-            $sql = $sql . '  INNER JOIN assignquestiontoexam ass ON q.id = ass.questionid
-            WHERE q.userid = :userid and ass.examid=' . $examid . '  ORDER BY q.qcategory';
-        } else {
-            $sql = $sql . ' WHERE q.userid = :userid  ORDER BY q.qcategory';
+                userid
+                FROM questions q
+                WHERE q.userid = :userid
+                ORDER BY q.qcategory
+                ';
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['userid' => $userid]);
+
+            // returns an array of arrays (i.e. a raw data set)
+            return $stmt->fetchAll();
         }
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['userid' => $userid]);
-        // if ($examid>0)
-        //   $stmt->execute(['examid' => $examid]);
 
-        // returns an array of arrays (i.e. a raw data set)
-        return $stmt->fetchAll();
-    }
+        public function GetQuestionAnswers($qid):array{
+                $conn = $this->getEntityManager()->getConnection();
 
-    public function GetQuestionAnswers($qid): array
-    {
-        $conn = $this->getEntityManager()->getConnection();
-
-        $sql = '
+                $sql = '
                     SELECT
                     id, questionid, ansdescription,  iscorrect,
                     CASE
@@ -76,39 +68,39 @@ class QuestionsRepository extends ServiceEntityRepository
                     FROM answers a
                     WHERE a.questionid= :qid
                     ';
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['qid' => $qid]);
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute(['qid' => $qid]);
 
-        // returns an array of arrays (i.e. a raw data set)
-        return $stmt->fetchAll();
-    }
+                // returns an array of arrays (i.e. a raw data set)
+                return $stmt->fetchAll();
+            }
 
 //    /**
-    //     * @return Questions[] Returns an array of Questions objects
-    //     */
+//     * @return Questions[] Returns an array of Questions objects
+//     */
     /*
     public function findByExampleField($value)
     {
-    return $this->createQueryBuilder('q')
-    ->andWhere('q.exampleField = :val')
-    ->setParameter('val', $value)
-    ->orderBy('q.id', 'ASC')
-    ->setMaxResults(10)
-    ->getQuery()
-    ->getResult()
-    ;
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('q.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
-     */
+    */
 
     /*
-public function findOneBySomeField($value): ?Questions
-{
-return $this->createQueryBuilder('q')
-->andWhere('q.exampleField = :val')
-->setParameter('val', $value)
-->getQuery()
-->getOneOrNullResult()
-;
-}
- */
+    public function findOneBySomeField($value): ?Questions
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
 }

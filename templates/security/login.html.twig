@@ -9,8 +9,6 @@
 {% endblock %}
 
 {% block MainBody %}
-<table style="width:50%;" align="center">
-<td style="width:45%;">
 <form class="form-signin" method="post">
   {% if error %}
       <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -32,6 +30,4 @@
       Sign in
   </button>
 </form>
-</td>
-</table>
 {% endblock %}

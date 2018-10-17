@@ -35,7 +35,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         // do your work when we're POSTing to the login page
         return $request->attributes->get('_route') === 'app_login'
-        && $request->isMethod('POST');
+            && $request->isMethod('POST');
     }
 
     public function getCredentials(Request $request)
@@ -44,7 +44,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             'email' => $request->request->get('email'),
             'password' => $request->request->get('password'),
             'csrf_token' => $request->request->get('_csrf_token'),
-            'uid' => $request->request->get('id'),
+            'uid'=>$request->request->get('id'),
         ];
 
         $request->getSession()->set(
@@ -73,13 +73,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        // $user =$this->userRepository->findOneBy(['email' => $credentials['email']])->getUser();
-        // $userId = $this->getUser()->getId();
-        // $user = $this->token_storage->getToken()->getUser();
-        // $request->getSession()->get('name', 'default_value')
-        //  $credentials=$this->getCredentials($request);
-        //  $user = $this->userRepository->findOneBy(['email' => $credentials['email']]);
-        return new RedirectResponse($this->router->generate('exams_show'));
+      // $user =$this->userRepository->findOneBy(['email' => $credentials['email']])->getUser();
+      // $userId = $this->getUser()->getId();
+       // $user = $this->token_storage->getToken()->getUser();
+       // $request->getSession()->get('name', 'default_value')
+       //  $credentials=$this->getCredentials($request);
+       //  $user = $this->userRepository->findOneBy(['email' => $credentials['email']]);
+        return new RedirectResponse($this->router->generate('question_show'));
     }
 
     protected function getLoginUrl()

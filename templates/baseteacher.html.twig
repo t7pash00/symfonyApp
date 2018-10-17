@@ -1,12 +1,11 @@
-{% extends 'base.html.twig' %}
+{# templates/base.html.twig #}
 {% block sidebar %}
-    <a href="{{ path('exams_show') }}">
+    <a href="<?php echo site_url('Students_ctl/show_students'); ?>">
+        <button style="width:90%; margin-top: 10px;">Questions And Answer</button>
+    </a>
+    <a href="<?php echo site_url('Course_ctl/show_courses'); ?>">
         <button style="width:90%; margin-top: 10px;">Exams</button>
     </a>
-    <a href="{{ path('question_show', {examid: 0}) }}">
-      <button style="width:90%; margin-top: 10px;">Questions And Answer</button>
-  </a>
-
     <a href="<?php echo site_url('Postalcode_ctl/show_postalcodes'); ?>">
         <button style="width:90%; margin-top: 10px;">Assign Exams</button>
     </a>

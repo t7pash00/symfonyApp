@@ -36,11 +36,6 @@ class Questions
      */
     private $userid;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $canedit;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -90,18 +85,6 @@ class Questions
     public function setUserid(int $userid): self
     {
         $this->userid = $userid;
-
-        return $this;
-    }
-
-    public function getCanedit(): ?bool
-    {
-        return $this->canedit;
-    }
-
-    public function setCanedit(bool $canedit): self
-    {
-        $this->canedit = $canedit;
 
         return $this;
     }

@@ -18,34 +18,33 @@ class AnswersRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Answers::class);
     }
- 
-//    @return Answers[] Returns an array of Answers objects
-    
-    public function GetAllanswers($userid)
+
+//    /**
+//     * @return Answers[] Returns an array of Answers objects
+//     */
+    /*
+    public function findByExampleField($value)
     {
-        $conn = $this->getEntityManager()->getConnection();
-        $sql = '
-        SELECT 
-            * from assignexamtostudents a where a.answersid= :uid';
-            $stmt = $conn->prepare($sql);
-            $stmt->execute(['uid' => $userid]);
-    
-        // returns an array of arrays (i.e. a raw data set)
-        return $stmt->fetchAll();
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('a.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
-   
-    
-    
+    */
 
     /*
-public function findOneBySomeField($value): ?Answers
-{
-return $this->createQueryBuilder('a')
-->andWhere('a.exampleField = :val')
-->setParameter('val', $value)
-->getQuery()
-->getOneOrNullResult()
-;
-}
- */
+    public function findOneBySomeField($value): ?Answers
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
 }
