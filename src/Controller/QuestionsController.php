@@ -35,6 +35,7 @@ class QuestionsController extends AbstractController
             'questions/index.html.twig',
             array('questionstwig' => $questions, 'repans' => $repository, 'examidP' => $examid, 'examDsc'=>$examDesc)
         );
+    }
 
     }
 
