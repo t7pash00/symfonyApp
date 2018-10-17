@@ -1,7 +1,7 @@
 
 {% extends 'baseteacher.html.twig' %}
 
-{% block title %}Add new Question!{% endblock %}
+{% block title %}Add new Answer!{% endblock %}
 
 
 
@@ -18,18 +18,14 @@
 <td >
   <table class="tbl_"; align="center"; width= "100%"">
     <tr height="30px">
-      <td align="right">Question </td>
+      <td align="right">Answer </td>
       <td align="Left">
-  {{ form_widget(form.qdescription) }}
+  {{ form_widget(form.ansdescription) }}
        </td>
     </tr>
     <tr height="30px">
       <td align="right">Category </td>
-      <td align="Left">{{ form_row(form.qcategory) }} </td>
-    </tr>
-    <tr height="30px">
-      <td align="right">Category </td>
-      <td align="Left">{{ form_row(form.qdifficultylevel) }} </td>
+      <td align="Left">{{ form_row(form.iscorrect) }} </td>
     </tr>
     <tr height="30px">
       <td colspan="2">{{ form_widget(form.save) }}
