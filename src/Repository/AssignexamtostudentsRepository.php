@@ -19,32 +19,35 @@ class AssignexamtostudentsRepository extends ServiceEntityRepository
         parent::__construct($registry, Assignexamtostudents::class);
     }
 
-//    /**
-    //     * @return Assignexamtostudents[] Returns an array of Assignexamtostudents objects
-    //     */
-    /*
-    public function findByExampleField($value)
+   /**
+    * @return Assignexamtostudents[] Returns an array of Assignexamtostudents objects
+    */
+
+    public function GetAllassignexamtostudents($userid)
     {
-    return $this->createQueryBuilder('a')
-    ->andWhere('a.exampleField = :val')
-    ->setParameter('val', $value)
-    ->orderBy('a.id', 'ASC')
-    ->setMaxResults(10)
-    ->getQuery()
-    ->getResult()
-    ;
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT 
+            * from assignexamtostudents a where a.studentid= :uid';
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['uid' => $userid]);
+    
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
     }
-     */
+   
 
     /*
-public function findOneBySomeField($value): ?Assignexamtostudents
-{
-return $this->createQueryBuilder('a')
-->andWhere('a.exampleField = :val')
-->setParameter('val', $value)
-->getQuery()
-->getOneOrNullResult()
-;
-}
- */
+    public function findOneBySomeField($value): ?Assignexamtostudents
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
 }
