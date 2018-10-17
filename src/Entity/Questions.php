@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,9 +19,6 @@ class Questions
     /**
      * @ORM\Column(type="string", length=255)
      */
-    /**
-     * @Assert\NotBlank()
-     */
     private $qdescription;
 
     /**
@@ -39,6 +35,11 @@ class Questions
      * @ORM\Column(type="integer")
      */
     private $userid;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $canedit;
 
     public function getId(): ?int
     {
@@ -89,6 +90,18 @@ class Questions
     public function setUserid(int $userid): self
     {
         $this->userid = $userid;
+
+        return $this;
+    }
+
+    public function getCanedit(): ?bool
+    {
+        return $this->canedit;
+    }
+
+    public function setCanedit(bool $canedit): self
+    {
+        $this->canedit = $canedit;
 
         return $this;
     }

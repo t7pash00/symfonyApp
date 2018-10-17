@@ -20,31 +20,31 @@ class AssignexamtostudentsRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Assignexamtostudents[] Returns an array of Assignexamtostudents objects
-//     */
+    //     * @return Assignexamtostudents[] Returns an array of Assignexamtostudents objects
+    //     */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    return $this->createQueryBuilder('a')
+    ->andWhere('a.exampleField = :val')
+    ->setParameter('val', $value)
+    ->orderBy('a.id', 'ASC')
+    ->setMaxResults(10)
+    ->getQuery()
+    ->getResult()
+    ;
     }
-    */
+     */
 
     /*
-    public function findOneBySomeField($value): ?Assignexamtostudents
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+public function findOneBySomeField($value): ?Assignexamtostudents
+{
+return $this->createQueryBuilder('a')
+->andWhere('a.exampleField = :val')
+->setParameter('val', $value)
+->getQuery()
+->getOneOrNullResult()
+;
+}
+ */
 }

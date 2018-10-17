@@ -1,0 +1,41 @@
+
+{% extends 'baseteacher.html.twig' %}
+
+{% block title %}Add new Exam!{% endblock %}
+
+
+
+{% block MainBody %}
+<style >
+.tbl_ {
+    align:center;
+    border:"0";
+
+}
+</style>
+{{ form_start(form) }}
+<table class="tbl_" width=50%;>
+<td >
+  <table class="tbl_"; align="center"; width= "100%"">
+    <tr height="30px">
+      <td align="right">Exam </td>
+      <td align="Left">
+  {{ form_widget(form.description) }}
+       </td>
+    </tr>
+    <tr height="30px">
+      <td align="right">Category </td>
+      <td align="Left">{{ form_row(form.category) }} </td>
+    </tr>
+    <tr height="30px">
+      <td colspan="2">{{ form_widget(form.save) }}
+      {{ form_widget(form.cancel) }} </td>
+
+    </tr>
+
+  </table>
+
+</td>
+</table>
+
+{% endblock %}
