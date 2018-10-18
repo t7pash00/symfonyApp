@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block sidebar %}
+    <a href="{{ path('exams_show') }}">
+        <button style="width:90%; margin-top: 10px;">Exams</button>
+    </a>
+   
+
+    
+    <a href="{{ path('app_logout') }}">
+        <button style="width:90%; margin-top: 10px;">Log Out</button>
+    </a>
+{% endblock %}

@@ -1,0 +1,49 @@
+
+{% extends 'baseteacher.html.twig' %}
+
+{% block title %}Assign Exam!{% endblock %}
+
+
+
+{% block MainBody %}
+<style >
+.tbl_ {
+    align:center;
+    border:"0";
+
+}
+</style>
+{{ form_start(asgform) }}
+
+<table class="tbl_" width=70%;>
+<td >
+<table class="tbl_"; align="center"; width= "100%">
+<thead >
+        <tr class="info">
+            <th  >ID</th>
+            <th  >Name</th>
+            <th >Email</th>
+            <th >Assign</th>
+        </tr>
+          </thead>
+
+  {% for entry in assingexamtwig %}
+  {% set chname = entry.id %}
+    <tr height="30px">
+      <td >{{entry.id}} </td>
+      <td >{{entry.firstname}} </td>
+      <td >{{entry.email}} </td>
+      <td > {{ form_widget(asgform[chname]) }}  </td>
+    </tr>
+ {% endfor %}
+ <tr height="30px">
+      <td colspan="4">{{ form_widget(asgform.save) }} {{ form_widget(asgform.Cancel) }}  </td>
+      
+      
+    </tr>
+  </table>
+
+</td>
+</table>
+
+{% endblock %}
